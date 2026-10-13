@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080d18">
+  <meta name="description" content="Link your WhatsApp account with a pairing code and receive your Astro X Ultra SESSION_ID in your private self-chat.">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>ASTRO X ULTRA — Session Generator</title>
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css?v=3">
+  <script src="/app.js?v=3" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-a" aria-hidden="true"></div>
+  <div class="ambient ambient-b" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Astro X Ultra Session Generator home">
+      <span class="brand-mark" aria-hidden="true"><i></i><b></b></span>
+      <span class="brand-name">ASTRO <strong>X</strong> ULTRA</span>
+    </a>
+    <span class="service-status"><span class="status-dot"></span> SESSION SERVICE</span>
+  </header>
+
+  <main class="layout">
+    <section class="intro" aria-labelledby="page-title">
+      <div class="eyebrow"><span>WHATSAPP · LINKED DEVICES</span><span class="eyebrow-line"></span></div>
+      <h1 id="page-title">Your session.<br><span>Your device.</span></h1>
+      <p class="intro-copy">Create a pairing code for your own WhatsApp account. After linking, your Astro X Ultra SESSION_ID is sent to that account’s WhatsApp self-chat.</p>
+
+      <figure class="hero-photo">
+        <img src="/astro-commander.jpg" alt="ASTRO commander artwork with an ASTRO flag" width="627" height="627" fetchpriority="high">
+        <figcaption>ASTRO X ULTRA <span>·</span> PRIVATE SESSION DELIVERY</figcaption>
+      </figure>
+
+      <div class="steps" aria-label="Three steps">
+        <div class="step"><span class="step-index">01</span><span>Enter your number</span></div>
+        <div class="step-rule"></div>
+        <div class="step"><span class="step-index">02</span><span>Link in WhatsApp</span></div>
+        <div class="step-rule"></div>
+        <div class="step"><span class="step-index">03</span><span>Check your self-chat</span></div>
+      </div>
+
+      <div class="privacy-note">
+        <span class="shield" aria-hidden="true">◆</span>
+        <p><strong>Keep your session private.</strong> It is sent to your linked account’s WhatsApp self-chat and is never displayed on this website. Only generate a session for an account you own or are authorized to manage.</p>
+      </div>
+    </section>
+
+    <section class="generator-card" aria-labelledby="card-title">
+      <div class="card-topline"><span>PAIRING CONSOLE</span><span class="live-indicator"><i></i> READY</span></div>
+      <div class="card-heading">
+        <div class="orb" aria-hidden="true"><span></span></div>
+        <div>
+          <h2 id="card-title">Generate session</h2>
+          <p>Use your number with country code.</p>
+        </div>
+      </div>
+
+      <form id="pair-form" novalidate>
+        <label for="phone-number">WhatsApp phone number</label>
+        <div class="phone-field">
+          <span class="phone-prefix" aria-hidden="true">+</span>
+          <input id="phone-number" name="phoneNumber" type="tel" inputmode="tel" autocomplete="tel" placeholder="254 712 345 678" maxlength="24" required>
+        </div>
+        <p class="field-hint">Country code included · digits only · 7–15 digits</p>
+
+        <label class="consent-row" for="account-consent">
+          <input id="account-consent" type="checkbox" required>
+          <span>I am linking my own WhatsApp account and understand the SESSION_ID is sensitive.</span>
+        </label>
+
+        <button id="start-button" class="primary-button" type="submit">
+          <span>Generate pairing code</span><span class="button-arrow" aria-hidden="true">↗</span>
+        </button>
+      </form>
+
+      <div id="progress-panel" class="result-panel hidden" aria-live="polite">
+        <div class="result-divider"><span id="progress-kicker">ESTABLISHING CONNECTION</span><span class="pulse"><i></i><i></i><i></i></span></div>
+        <p id="status-message" class="status-message">Connecting securely to WhatsApp…</p>
+
+        <div id="pairing-code-box" class="code-box hidden">
+          <div class="code-label">YOUR PAIRING CODE</div>
+          <div class="code-row"><code id="pairing-code">----</code><button id="copy-code" class="copy-button" type="button" aria-label="Copy pairing code">Copy pairing code</button></div>
+          <p id="copy-feedback" class="copy-feedback" role="status" aria-live="polite"></p>
+          <p>WhatsApp → <strong>Linked Devices</strong> → <strong>Link a Device</strong> → <strong>Link with phone number</strong></p>
+          <a class="whatsapp-link" href="https://web.whatsapp.com/" target="_blank" rel="noopener noreferrer">Open WhatsApp Web <span aria-hidden="true">↗</span></a>
+        </div>
+
+        <div id="session-box" class="session-box hidden">
+          <div class="session-success"><span>✓</span><div><strong>SESSION_ID sent to your WhatsApp self-chat</strong><small>Open your “Message yourself” conversation to find it. This website will not show the SESSION_ID.</small></div></div>
+          <p class="session-warning">The SESSION_ID can provide access to your linked account. Keep the message private and do not forward it.</p>
+        </div>
+
+        <button id="cancel-button" class="cancel-button" type="button">Cancel pairing</button>
+        <button id="restart-button" class="restart-button hidden" type="button">Start another request</button>
+      </div>
+
+      <div id="error-banner" class="error-banner hidden" role="alert"></div>
+      <div class="card-foot"><span>END-TO-END PAIRING FLOW</span><span>ASTRO / 01</span></div>
+    </section>
+  </main>
+
+  <footer class="footer"><span>ASTRO X ULTRA <span class="footer-divider">/</span> SESSION GENERATOR</span><span>SESSION_ID delivery is to your linked WhatsApp self-chat only.</span></footer>
+</body>
+</html>
