@@ -213,7 +213,10 @@ function failEntry(entry, safeMessage, logError) {
   entry.finished = true;
   entry.status = 'failed';
   entry.message = safeMessage;
-  if (logError) console.error('Pairing request failed:', logError.name || 'Error');
+  // Log the message too, not just the name. The name alone ("TypeError") is not enough to
+  // tell apart a bad option from a socket problem, and it cost a lot of guessing to find
+  // one. Capped and never containing a phone number, code or credential.
+  if (logError) console.error('Pairing request failed:', logError.name || 'Error', '-', String(logError.message || '').slice(0, 200));
   entry.phoneNumber = null;
   releaseActive(entry);
   cleanupSocketAndCredentials(entry).catch(() => {});
@@ -248,7 +251,12 @@ async function issuePairingCode(entry, phoneNumber) {
       printQRInTerminal: false,
       logger: pino({ level: 'silent' }),
       browser: ['ASTRO X ULTRA', 'Chrome', '120.0.0.0'],
-      shouldSyncHistoryMessage: false,
+      // Baileys 7 calls this as a callback while building the socket, so passing a
+      // boolean `false` made makeWASocket throw
+      // "config.shouldSyncHistoryMessage is not a function" on every attempt — which the
+      // UI surfaced only as "The pairing service could not start." Returning false keeps
+      // the original intent (never sync chat history) and satisfies the callback API.
+      shouldSyncHistoryMessage: () => false,
       syncFullHistory: false,
       markOnlineOnConnect: false
     });
