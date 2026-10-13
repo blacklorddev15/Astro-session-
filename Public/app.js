@@ -128,6 +128,14 @@
         codeBox.classList.remove('hidden');
         progressKicker.textContent = 'PAIRING CODE READY';
         cancelButton.classList.remove('hidden');
+      } else if (data.status === 'starting') {
+        // The server invalidates the current code and opens a fresh socket on every retry
+        // (it sets pairingCode = null), so any code still on screen here is already dead.
+        // Clear it instead of letting someone type a stale code that WhatsApp will reject.
+        codeOutput.textContent = '----';
+        codeBox.classList.add('hidden');
+        progressKicker.textContent = 'PAIRING CODE PENDING';
+        cancelButton.classList.remove('hidden');
       } else if (data.status === 'complete') {
         isComplete = true;
         if (pollTimer) clearTimeout(pollTimer);

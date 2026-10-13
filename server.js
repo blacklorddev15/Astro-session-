@@ -345,11 +345,14 @@ async function issuePairingCode(entry, phoneNumber) {
       if (entry.sock !== sock || entry.cancelled || entry.finished) return;
       const code = await sock.requestPairingCode(phoneNumber);
       if (entry.sock !== sock || entry.cancelled || entry.finished) return;
-      entry.pairingCode = String(code).length === 8
-        ? `${String(code).slice(0, 4)}-${String(code).slice(4)}`
-        : String(code);
+      // Show the code exactly as Baileys produced it. The code is used verbatim as PBKDF2
+      // key material (derivePairingCodeKey), so the phone has to receive the same string
+      // character for character — the old "XXXX-XXXX" display added a 9th character, which
+      // made every hand-typed code fail even when it looked right. Baileys' own example
+      // prints the bare code for the same reason.
+      entry.pairingCode = String(code);
       entry.status = 'code_ready';
-      entry.message = 'Enter this code in WhatsApp → Linked Devices → Link with phone number.';
+      entry.message = 'Type these 8 characters in WhatsApp → Linked Devices → Link with phone number. No dashes, no spaces.';
     }
   } catch (error) {
     if (sock && entry.sock !== sock) return;
