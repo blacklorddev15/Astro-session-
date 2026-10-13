@@ -61,7 +61,11 @@ app.use('/api', (req, res, next) => {
   res.set('X-Robots-Tag', 'noindex, nofollow');
   next();
 });
-app.use(express.static(path.join(__dirname, 'public'), {
+// The site files live in "Public" (capital P) in this repository. Linux filesystems are
+// case-sensitive, so the previous lowercase path resolved to a directory that does not
+// exist, express.static served nothing, and Express answered "/" with its default
+// "Cannot GET /" 404. Keep this casing in sync with the directory on GitHub.
+app.use(express.static(path.join(__dirname, 'Public'), {
   index: 'index.html',
   etag: true,
   maxAge: '1h',
