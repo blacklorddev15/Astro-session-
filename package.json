@@ -1,0 +1,21 @@
+{
+  "name": "astro-x-ultra-session-generator",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Public website for generating WhatsApp SESSION_ID values for ASTRO X ULTRA",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "latest",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "helmet": "^8.1.0",
+    "pino": "^9.0.0"
+  }
+}

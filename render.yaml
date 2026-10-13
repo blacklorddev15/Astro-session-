@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: astro-x-ultra-session-generator
+    runtime: node
+    plan: free
+    buildCommand: npm ci --legacy-peer-deps
+    startCommand: npm start
+    autoDeploy: true
+    healthCheckPath: /api/health
+    envVars:
+      - key: SESSION_PREFIX
+        value: "ASTRO X:~"
+      - key: MAX_ACTIVE_SESSIONS
+        value: "2"
+      - key: MAX_REQUESTS_PER_HOUR
+        value: "5"
+      - key: MAX_GLOBAL_REQUESTS_PER_HOUR
+        value: "30"
+      - key: NODE_VERSION
+        value: 20
